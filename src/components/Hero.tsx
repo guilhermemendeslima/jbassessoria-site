@@ -39,7 +39,7 @@ const Hero = () => {
   ];
 
   return (
-    <div id="início" className="relative overflow-hidden bg-primary min-h-screen pt-24 pb-16 md:pt-32 md:pb-24">
+    <div id="início" className="relative overflow-hidden bg-primary h-[85vh] pt-16 md:pt-20">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.15),transparent_70%),radial-gradient(circle_at_bottom_left,rgba(255,249,249,0.1),transparent_70%)]"></div>
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
@@ -49,45 +49,37 @@ const Hero = () => {
         />
       </div>
 
-      <div ref={containerRef} className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+      <div ref={containerRef} className="container mx-auto px-4 md:px-6 relative z-10 h-full flex items-center">
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 py-8">
           <motion.div 
             className="flex-1 text-center md:text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-secondary leading-tight mb-8">
+            <h1 className="text-3xl md:text-5xl font-bold text-secondary leading-tight mb-6">
               Simplificamos sua contabilidade com{' '}
-              <span className="relative inline-block overflow-hidden">
-                <motion.span 
-                  className="relative z-10 inline-block bg-gradient-to-r from-tertiary via-[#f3d5a5] to-tertiary bg-[length:200%_100%] bg-clip-text text-transparent"
-                  animate={{
-                    backgroundPosition: ['200% 0', '-200% 0'],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  tradição e inovação
-                </motion.span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30"
-                  animate={{
-                    x: ['100%', '-100%'],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-              </span>
+              <motion.span 
+                className="relative inline-block text-tertiary"
+                animate={{ 
+                  color: ['#d6b16a', '#f3d5a5', '#d6b16a'],
+                  textShadow: [
+                    '0 0 20px rgba(214,177,106,0.3)',
+                    '0 0 40px rgba(214,177,106,0.3)',
+                    '0 0 20px rgba(214,177,106,0.3)'
+                  ]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                tradição e inovação
+              </motion.span>
             </h1>
             <motion.p 
-              className="mt-8 text-secondary/80 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 leading-relaxed"
+              className="mt-6 text-secondary/80 text-base md:text-lg max-w-2xl mx-auto md:mx-0 leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
@@ -95,13 +87,13 @@ const Hero = () => {
               Há mais de 35 anos oferecendo soluções contábeis personalizadas para empresas em Sete Lagoas e região. Conte com nossa experiência para impulsionar o crescimento do seu negócio com segurança e eficiência.
             </motion.p>
             <motion.div 
-              className="mt-10 flex flex-col sm:flex-row gap-6 justify-center md:justify-start"
+              className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               <motion.button 
-                className="group bg-tertiary hover:bg-tertiary/90 text-primary px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-300"
+                className="group bg-tertiary hover:bg-tertiary/90 text-primary px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -115,7 +107,7 @@ const Hero = () => {
                 </span>
               </motion.button>
               <motion.button 
-                className="group bg-transparent border-2 border-tertiary text-tertiary px-8 py-4 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-300"
+                className="group bg-transparent border-2 border-tertiary text-tertiary px-6 py-3 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -132,13 +124,13 @@ const Hero = () => {
           </motion.div>
 
           <motion.div 
-            className="hidden md:block flex-1 md:flex-none md:w-[45%] relative perspective-1000"
+            className="hidden md:block flex-1 md:flex-none md:w-[40%] relative perspective-1000"
             style={{ rotateX, rotateY }}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-8 bg-white/5 rounded-2xl backdrop-blur-sm transform-style-preserve-3d hover:transform-style-3d transition-all duration-500">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-6 bg-white/5 rounded-2xl backdrop-blur-sm transform-style-preserve-3d hover:transform-style-3d transition-all duration-500">
               {icons.map(({ Icon, delay }, index) => (
                 <motion.div
                   key={index}
@@ -153,7 +145,7 @@ const Hero = () => {
                     z: 50
                   }}
                 >
-                  <Icon className="w-12 h-12 text-tertiary transform-style-preserve-3d" />
+                  <Icon className="w-10 h-10 text-tertiary transform-style-preserve-3d" />
                 </motion.div>
               ))}
             </div>
