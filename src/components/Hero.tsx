@@ -19,7 +19,7 @@ const Hero = () => {
         const xOffset = (x - 0.5) * speed * 15;
         const yOffset = (y - 0.5) * speed * 15;
         
-        htmlEl.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        htmlEl.style.transform = `perspective(1000px) rotateY(${xOffset * 0.1}deg) translateZ(${yOffset}px)`;
       });
     };
     
@@ -94,18 +94,18 @@ const Hero = () => {
           </motion.div>
           
           <motion.div 
-            className="flex-1 md:flex-none md:w-[45%] relative"
+            className="flex-1 md:flex-none md:w-[45%] relative perspective-1000"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <div className="relative aspect-square bg-gradient-to-br from-tertiary/5 to-transparent rounded-full p-8">
+            <div className="relative aspect-square bg-gradient-to-br from-tertiary/5 to-transparent rounded-full p-8 transform-style-3d">
               <div className="absolute inset-0 bg-gradient-to-br from-tertiary/10 to-transparent rounded-full animate-pulse"></div>
               <div className="relative grid grid-cols-2 gap-8 place-items-center h-full">
                 {iconComponents.map(({ Icon, delay }, index) => (
                   <motion.div
                     key={index}
-                    className="p-6 bg-gradient-to-br from-tertiary/20 to-tertiary/5 rounded-2xl"
+                    className="animation-element p-6 bg-gradient-to-br from-tertiary/20 to-tertiary/5 rounded-2xl transform transition-transform duration-300 hover:scale-110"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: delay + 1, duration: 0.5 }}

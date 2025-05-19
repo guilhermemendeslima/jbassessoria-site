@@ -7,17 +7,14 @@ const Instagram = () => {
     {
       image: "https://images.pexels.com/photos/6694543/pexels-photo-6694543.jpeg",
       caption: "Novidades sobre a declaração do Imposto de Renda 2025! Entre em contato para garantir que sua declaração esteja correta e otimizada.",
-      date: "Há 3 dias"
     },
     {
       image: "https://images.pexels.com/photos/6693661/pexels-photo-6693661.jpeg",
       caption: "Nossa equipe em constante aprimoramento! Participando de treinamentos para melhor atender nossos clientes.",
-      date: "Há 5 dias"
     },
     {
       image: "https://images.pexels.com/photos/6476260/pexels-photo-6476260.jpeg",
       caption: "Simplificando a gestão financeira da sua empresa com serviços contábeis personalizados para o seu negócio.",
-      date: "Há 1 semana"
     },
   ];
 
@@ -64,14 +61,11 @@ const Instagram = () => {
                 />
                 <div className="instagram-overlay absolute inset-0 flex flex-col justify-end p-4">
                   <p className="text-white text-sm mb-2">{post.caption}</p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 flex items-center justify-center">
-                        <InstagramIcon className="w-4 h-4 text-white" />
-                      </div>
-                      <span className="ml-2 text-white text-sm">@jbassessoriaecontabilidade</span>
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 flex items-center justify-center">
+                      <InstagramIcon className="w-4 h-4 text-white" />
                     </div>
-                    <span className="text-white/80 text-xs">{post.date}</span>
+                    <span className="ml-2 text-white text-sm">@jbassessoriaecontabilidade</span>
                   </div>
                 </div>
               </div>
