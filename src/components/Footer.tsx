@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText, Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -8,10 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center mb-4">
-              <FileText className="text-tertiary mr-2" size={24} />
-              <span className="font-bold text-xl">JB Assessoria</span>
-            </div>
+            <span className="font-bold text-xl block mb-4">JB Assessoria</span>
             <p className="text-secondary/70 mb-4">
               Simplificamos sua contabilidade com tradição e inovação há mais de 35 anos.
             </p>

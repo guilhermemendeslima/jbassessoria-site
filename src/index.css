@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat leading-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-6xl font-bold;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold;
+  }
+
+  .section-title {
+    @apply text-sm font-semibold text-tertiary uppercase tracking-wider mb-2;
+  }
+
+  .section-subtitle {
+    @apply text-3xl md:text-4xl font-bold text-primary mb-4;
+  }
+}
+
 @keyframes gradient {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -128,4 +154,12 @@
 
 .animation-element:hover {
   transform: perspective(1000px) rotateY(15deg) translateZ(20px) !important;
+}
+
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
 }

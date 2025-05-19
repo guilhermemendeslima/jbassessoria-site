@@ -83,19 +83,19 @@ const Counter = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="flex justify-center items-center space-x-8">
           {counters.map((item, index) => (
             <div 
               key={index}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 transform hover:scale-105 transition-all duration-300"
+              className="flex flex-col items-center transform hover:scale-105 transition-all duration-300"
             >
-              <div className="counter-icon mb-4 flex justify-center">
-                <item.icon className="w-12 h-12 text-tertiary" />
+              <div className="counter-icon mb-6 flex justify-center">
+                <item.icon className="w-12 h-12 text-tertiary transform-gpu transition-transform duration-300 hover:scale-110" />
               </div>
               <div className="text-tertiary mb-2">
                 <CountUp end={item.number} suffix={item.suffix} />
               </div>
-              <p className="text-secondary/90 text-sm">{item.label}</p>
+              <p className="text-secondary/90 text-sm text-center">{item.label}</p>
             </div>
           ))}
         </div>
