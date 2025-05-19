@@ -21,7 +21,7 @@ const Hero = () => {
   }));
 
   return (
-    <div id="início" className="relative overflow-hidden bg-primary min-h-screen pt-16 md:pt-20">
+    <div id="início" className="relative overflow-x-hidden bg-primary min-h-screen pt-16 md:pt-20">
       {/* Animated Background Particles */}
       {particles.map((particle) => (
         <motion.div
@@ -57,8 +57,9 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-secondary leading-tight mb-6">
-              Simplificamos sua contabilidade com{' '}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary leading-tight mb-6">
+              <span className="block">Simplificamos sua</span>
+              <span className="block">contabilidade com</span>
               <motion.span 
                 className="relative inline-block text-tertiary"
                 animate={{ 
@@ -133,13 +134,22 @@ const Hero = () => {
               {icons.map(({ Icon, delay }, index) => (
                 <motion.div
                   key={index}
-                  className="relative aspect-square bg-white/5 backdrop-blur-sm rounded-xl flex items-center justify-center group hover:bg-white/10 transition-all duration-300"
+                  className="relative aspect-square bg-white/5 backdrop-blur-sm rounded-xl flex items-center justify-center group perspective"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: delay, duration: 0.5 }}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{
+                    rotateX: 15,
+                    rotateY: 15,
+                    scale: 1.1,
+                    transition: { duration: 0.2 }
+                  }}
+                  style={{
+                    transformStyle: "preserve-3d"
+                  }}
                 >
-                  <Icon className="w-12 h-12 text-tertiary" />
+                  <Icon className="w-12 h-12 text-tertiary transform translate-z-20" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-tertiary/10 to-transparent rounded-xl -z-10" />
                 </motion.div>
               ))}
             </div>

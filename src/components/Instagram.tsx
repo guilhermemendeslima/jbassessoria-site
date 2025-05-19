@@ -1,8 +1,10 @@
-import React from 'react';
-import { Instagram as InstagramIcon, Heart, MessageCircle, Share2 } from 'lucide-react';
+import React, { useRef } from 'react';
+import { Instagram as InstagramIcon, Heart, MessageCircle, Share2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Instagram = () => {
+  const carouselRef = useRef<HTMLDivElement>(null);
+
   const posts = [
     {
       image: "https://images.pexels.com/photos/6694543/pexels-photo-6694543.jpeg",
@@ -24,12 +26,19 @@ const Instagram = () => {
     },
   ];
 
+  const scroll = (direction: 'left' | 'right') => {
+    if (carouselRef.current) {
+      const scrollAmount = direction === 'left' ? -288 : 288; // 288px is the width of one card
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   const handleInstagramClick = () => {
     window.open('https://www.instagram.com/jbassessoriaecontabilidade', '_blank');
   };
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-white overflow-x-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div 
           className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
@@ -48,13 +57,17 @@ const Instagram = () => {
           </p>
         </motion.div>
 
-        {/* Mobile Instagram Feed */}
-        <div className="md:hidden overflow-x-auto pb-6 -mx-4">
-          <div className="flex space-x-4 px-4" style={{ minWidth: 'max-content' }}>
+        {/* Mobile Instagram Carousel */}
+        <div className="relative">
+          <div 
+            ref={carouselRef}
+            className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-6"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {posts.map((post, index) => (
               <motion.div 
                 key={index}
-                className="w-72 bg-white rounded-xl shadow-lg"
+                className="flex-none w-72 bg-white rounded-xl shadow-lg snap-center"
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -94,6 +107,20 @@ const Instagram = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* Carousel Navigation Buttons */}
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg md:hidden"
+          >
+            <ChevronLeft className="w-6 h-6 text-primary" />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg md:hidden"
+          >
+            <ChevronRight className="w-6 h-6 text-primary" />
+          </button>
         </div>
 
         {/* Desktop Instagram Grid */}
