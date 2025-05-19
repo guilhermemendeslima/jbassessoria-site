@@ -17,6 +17,7 @@ const Hero = () => {
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.1),transparent_70%),radial-gradient(circle_at_bottom_left,rgba(255,249,249,0.05),transparent_70%)]"></div>
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-transparent to-primary/50"></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -73,7 +74,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.div 
-            className="flex-1 md:flex-none md:w-[45%] relative"
+            className="flex-1 md:flex-none md:w-[45%] relative perspective-1000"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -82,7 +83,7 @@ const Hero = () => {
               {icons.map(({ Icon, delay }, index) => (
                 <motion.div
                   key={index}
-                  className="aspect-square bg-tertiary/10 rounded-xl flex items-center justify-center transform-style-preserve-3d hover:transform-style-3d transition-all duration-300"
+                  className="relative aspect-square icon-3d-gradient icon-3d-shadow icon-3d-reflection rounded-xl flex items-center justify-center transform-style-preserve-3d hover:transform-style-3d transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: delay, duration: 0.5 }}
