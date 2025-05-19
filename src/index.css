@@ -3,19 +3,14 @@
 @tailwind utilities;
 
 @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .animate-gradient-text {
   animation: gradient 8s linear infinite;
+  background-size: 200% auto;
 }
 
 .animate-float {
@@ -23,23 +18,98 @@
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
 }
 
 @keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.98); }
 }
 
 .animate-pulse {
   animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.hover-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 55%
+  );
+  transform: translateX(-100%) rotate(45deg);
+  transition: all 0.3s;
+}
+
+.hover-shine:hover::after {
+  animation: shine 0.75s;
+}
+
+.instagram-grid-item {
+  transition: transform 0.3s ease-out;
+}
+
+.instagram-grid-item:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+.instagram-overlay {
+  opacity: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.instagram-grid-item:hover .instagram-overlay {
+  opacity: 1;
+}
+
+.counter-icon {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.counter-icon:hover {
+  transform: translateZ(20px) rotateX(10deg) rotateY(10deg);
+}
+
+.section-title-decoration {
+  position: relative;
+}
+
+.section-title-decoration::before,
+.section-title-decoration::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 50px;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.section-title-decoration::before {
+  right: 100%;
+  margin-right: 15px;
+}
+
+.section-title-decoration::after {
+  left: 100%;
+  margin-left: 15px;
 }
