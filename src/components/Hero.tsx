@@ -1,34 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Calculator, FileText, BarChart3, DollarSign, PieChart, ClipboardCheck, Mouse, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 20, stiffness: 200 };
-  const x = useSpring(mouseX, springConfig);
-  const y = useSpring(mouseY, springConfig);
-
-  const rotateX = useTransform(y, [-500, 500], [10, -10]);
-  const rotateY = useTransform(x, [-500, 500], [-10, 10]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = containerRef.current?.getBoundingClientRect();
-      if (rect) {
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        mouseX.set(e.clientX - centerX);
-        mouseY.set(e.clientY - centerY);
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
-
   const icons = [
     { Icon: Calculator, delay: 0 },
     { Icon: FileText, delay: 0.1 },
@@ -47,7 +21,7 @@ const Hero = () => {
   }));
 
   return (
-    <div id="início" className="relative overflow-hidden bg-primary h-screen pt-16 md:pt-20">
+    <div id="início" className="relative overflow-hidden bg-primary min-h-screen pt-16 md:pt-20">
       {/* Animated Background Particles */}
       {particles.map((particle) => (
         <motion.div
@@ -71,15 +45,12 @@ const Hero = () => {
       ))}
 
       <div className="absolute inset-0">
-        <motion.div 
-          className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.25),transparent_70%),radial-gradient(circle_at_bottom_left,rgba(255,249,249,0.15),transparent_70%)]"
-          style={{ rotateX, rotateY }}
-        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.25),transparent_70%),radial-gradient(circle_at_bottom_left,rgba(255,249,249,0.15),transparent_70%)]" />
         <div className="absolute inset-0 bg-grid-pattern opacity-20" />
       </div>
 
-      <div ref={containerRef} className="container mx-auto px-4 md:px-6 relative z-10 h-full flex items-center">
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full">
+      <div className="container mx-auto px-4 md:px-6 relative z-10 h-full flex items-center">
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full py-12 md:py-0">
           <motion.div 
             className="w-full md:w-1/2 text-center md:text-left"
             initial={{ opacity: 0, y: 20 }}
@@ -153,28 +124,22 @@ const Hero = () => {
           </motion.div>
 
           <motion.div 
-            className="hidden md:block w-1/2 relative perspective-1000"
-            style={{ rotateX, rotateY }}
+            className="hidden md:block w-1/2"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-8 rounded-2xl backdrop-blur-sm transform-style-preserve-3d hover:transform-style-3d transition-all duration-500">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-8">
               {icons.map(({ Icon, delay }, index) => (
                 <motion.div
                   key={index}
-                  className="relative aspect-square icon-3d-gradient icon-3d-shadow icon-3d-reflection rounded-xl flex items-center justify-center transform-style-preserve-3d hover:transform-style-3d transition-all duration-300"
+                  className="relative aspect-square bg-white/5 backdrop-blur-sm rounded-xl flex items-center justify-center group hover:bg-white/10 transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: delay, duration: 0.5 }}
-                  whileHover={{
-                    scale: 1.05,
-                    rotateX: 10,
-                    rotateY: 10,
-                    z: 50
-                  }}
+                  whileHover={{ scale: 1.05 }}
                 >
-                  <Icon className="w-12 h-12 text-tertiary transform-style-preserve-3d" />
+                  <Icon className="w-12 h-12 text-tertiary" />
                 </motion.div>
               ))}
             </div>
