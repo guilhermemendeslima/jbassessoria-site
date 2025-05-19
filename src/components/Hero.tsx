@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calculator, FileText, BarChart3 } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -69,60 +68,10 @@ const Hero = () => {
             <div className="relative w-full max-w-[500px] mx-auto">
               <div className="relative aspect-[3/4] md:aspect-square">
                 <img
-                  src="https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg"
-                  alt="Professional"
+                  src="https://images.pexels.com/photos/7821702/pexels-photo-7821702.jpeg"
+                  alt="Serviços contábeis profissionais"
                   className="w-full h-full object-cover rounded-2xl"
                 />
-                
-                <motion.div
-                  className="absolute -top-4 -right-4 w-20 h-20 bg-tertiary/20 rounded-full flex items-center justify-center"
-                  animate={{
-                    y: [0, -20, 0],
-                    rotate: [0, 360],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <Calculator className="w-8 h-8 text-tertiary" />
-                </motion.div>
-
-                <motion.div
-                  className="absolute top-1/3 -right-4 w-16 h-16 bg-tertiary/20 rounded-full flex items-center justify-center"
-                  animate={{
-                    y: [0, 20, 0],
-                    rotate: [0, -360],
-                    scale: [1, 1.2, 1],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1
-                  }}
-                >
-                  <FileText className="w-6 h-6 text-tertiary" />
-                </motion.div>
-
-                <motion.div
-                  className="absolute bottom-1/4 -right-4 w-14 h-14 bg-tertiary/20 rounded-full flex items-center justify-center"
-                  animate={{
-                    y: [-20, 0, -20],
-                    rotate: [0, 360],
-                    scale: [1, 1.15, 1],
-                  }}
-                  transition={{
-                    duration: 4.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
-                  }}
-                >
-                  <BarChart3 className="w-5 h-5 text-tertiary" />
-                </motion.div>
               </div>
             </div>
           </motion.div>
