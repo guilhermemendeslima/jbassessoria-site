@@ -58,7 +58,7 @@ const Instagram = () => {
         </motion.div>
 
         {/* Mobile Instagram Carousel */}
-        <div className="relative">
+        <div className="relative md:hidden">
           <div 
             ref={carouselRef}
             className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-6"
