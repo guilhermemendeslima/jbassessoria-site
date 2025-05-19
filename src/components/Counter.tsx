@@ -62,7 +62,7 @@ const Counter = () => {
   const counters = [
     { icon: Calculator, number: 35, suffix: "+", label: "Anos de experiência" },
     { icon: FileText, number: 850, suffix: "+", label: "Clientes atendidos" },
-    { icon: BarChart3, number: 12000, suffix: "+", label: "Declarações entregues" },
+    { icon: BarChart3, number: 200, suffix: "+", label: "Empresas parceiras" },
     { icon: DollarSign, number: 98, suffix: "%", label: "Índice de satisfação" },
   ];
 
