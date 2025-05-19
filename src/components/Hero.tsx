@@ -11,20 +11,20 @@ const Hero = () => {
     if (!container) return;
 
     const icons = container.querySelectorAll('.icon-element');
-    const radius = 120;
+    const radius = 120; // Radius of the circle
     const totalIcons = icons.length;
 
     const animate = () => {
-      const time = Date.now() * 0.001;
+      const time = Date.now() * 0.001; // Current time in seconds
       
       icons.forEach((icon, index) => {
         const angle = (index / totalIcons) * Math.PI * 2 + time;
         const x = Math.cos(angle) * radius;
         const y = Math.sin(angle) * radius;
-        const z = Math.sin(angle * 2) * 30;
+        const z = Math.sin(angle * 2) * 30; // Add some depth variation
         
-        const scale = (Math.sin(angle) + 2) / 2.5;
-        const opacity = (Math.sin(angle) + 1.5) / 2;
+        const scale = (Math.sin(angle) + 2) / 2.5; // Scale based on position
+        const opacity = (Math.sin(angle) + 1.5) / 2; // Fade based on position
         
         const el = icon as HTMLElement;
         el.style.transform = `translate3d(${x}px, ${y}px, ${z}px) scale(${scale})`;
@@ -123,7 +123,11 @@ const Hero = () => {
                     ease: "easeInOut"
                   }}
                 >
-                  <Calculator className="w-16 h-16 text-tertiary" />
+                  <img 
+                    src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg"
+                    alt="Central Image"
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </motion.div>
                 
                 {iconComponents.map(({ Icon, delay }, index) => (
