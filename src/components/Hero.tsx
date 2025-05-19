@@ -1,8 +1,34 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Calculator, FileText, BarChart3, DollarSign, PieChart, ClipboardCheck } from 'lucide-react';
 
 const Hero = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 20, stiffness: 200 };
+  const x = useSpring(mouseX, springConfig);
+  const y = useSpring(mouseY, springConfig);
+
+  const rotateX = useTransform(y, [-500, 500], [10, -10]);
+  const rotateY = useTransform(x, [-500, 500], [-10, 10]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (rect) {
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        mouseX.set(e.clientX - centerX);
+        mouseY.set(e.clientY - centerY);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
   const icons = [
     { Icon: Calculator, delay: 0 },
     { Icon: FileText, delay: 0.1 },
@@ -15,12 +41,15 @@ const Hero = () => {
   return (
     <div id="início" className="relative overflow-hidden bg-primary min-h-screen pt-24 pb-16 md:pt-32 md:pb-24">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.1),transparent_70%),radial-gradient(circle_at_bottom_left,rgba(255,249,249,0.05),transparent_70%)]"></div>
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-transparent to-primary/50"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.15),transparent_70%),radial-gradient(circle_at_bottom_left,rgba(255,249,249,0.1),transparent_70%)]"></div>
+        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <motion.div 
+          className="absolute inset-0 bg-[linear-gradient(45deg,rgba(44,27,17,0.7),rgba(214,177,106,0.1))]"
+          style={{ rotateX, rotateY }}
+        />
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div ref={containerRef} className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
           <motion.div 
             className="flex-1 text-center md:text-left"
@@ -30,10 +59,31 @@ const Hero = () => {
           >
             <h1 className="text-4xl md:text-6xl font-bold text-secondary leading-tight mb-8">
               Simplificamos sua contabilidade com{' '}
-              <span className="relative inline-block">
-                <span className="relative z-10 animate-gradient-text bg-gradient-to-r from-tertiary via-[#f3d5a5] to-tertiary bg-clip-text text-transparent">
+              <span className="relative inline-block overflow-hidden">
+                <motion.span 
+                  className="relative z-10 inline-block bg-gradient-to-r from-tertiary via-[#f3d5a5] to-tertiary bg-[length:200%_100%] bg-clip-text text-transparent"
+                  animate={{
+                    backgroundPosition: ['200% 0', '-200% 0'],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                >
                   tradição e inovação
-                </span>
+                </motion.span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30"
+                  animate={{
+                    x: ['100%', '-100%'],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                />
               </span>
             </h1>
             <motion.p 
@@ -50,7 +100,11 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              <button className="group bg-tertiary hover:bg-tertiary/90 text-primary px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-300 transform hover:scale-105">
+              <motion.button 
+                className="group bg-tertiary hover:bg-tertiary/90 text-primary px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <span className="flex items-center justify-center">
                   Conheça nossos serviços
                   <motion.span 
@@ -59,8 +113,12 @@ const Hero = () => {
                     whileHover={{ x: 5 }}
                   >→</motion.span>
                 </span>
-              </button>
-              <button className="group bg-transparent border-2 border-tertiary text-tertiary px-8 py-4 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-300">
+              </motion.button>
+              <motion.button 
+                className="group bg-transparent border-2 border-tertiary text-tertiary px-8 py-4 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <span className="flex items-center justify-center">
                   Fale com um especialista
                   <motion.span 
@@ -69,12 +127,13 @@ const Hero = () => {
                     whileHover={{ x: 5 }}
                   >→</motion.span>
                 </span>
-              </button>
+              </motion.button>
             </motion.div>
           </motion.div>
 
           <motion.div 
             className="hidden md:block flex-1 md:flex-none md:w-[45%] relative perspective-1000"
+            style={{ rotateX, rotateY }}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
