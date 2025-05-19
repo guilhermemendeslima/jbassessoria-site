@@ -3,7 +3,7 @@ import { Award, Users, TrendingUp } from 'lucide-react';
 
 const AboutUs = () => {
   return (
-    <section id="sobre" className="py-16 md:py-24 bg-secondary transform -translate-y-1">
+    <section id="sobre" className="py-16 md:py-24 bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className="lg:w-1/2">
