@@ -272,25 +272,188 @@ html {
   transform: translateZ(20px);
 }
 
-/* Ajustes de responsividade */
-@media (max-width: 640px) {
+/* Responsive Adjustments */
+@media (max-width: 768px) {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
   
   h1 {
-    font-size: 2rem;
+    font-size: 2.25rem;
     line-height: 1.2;
   }
   
   h2 {
+    font-size: 1.875rem;
+  }
+  
+  h3 {
     font-size: 1.5rem;
   }
   
   .section-padding {
     padding-top: 3rem;
     padding-bottom: 3rem;
+  }
+
+  .grid {
+    gap: 1.5rem;
+  }
+
+  .card-padding {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .button-text {
+    font-size: 0.875rem;
+  }
+
+  .grid {
+    gap: 1rem;
+  }
+
+  .card-padding {
+    padding: 1rem;
+  }
+}
+
+/* Enhanced Mobile Navigation */
+@media (max-width: 768px) {
+  .mobile-menu {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    background-color: var(--color-primary);
+    padding: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-menu-item {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Improved Touch Targets for Mobile */
+@media (max-width: 640px) {
+  button, 
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .touch-target {
+    padding: 0.75rem;
+  }
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .text-responsive {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .heading-responsive {
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+  }
+}
+
+/* Responsive Spacing */
+@media (max-width: 768px) {
+  .section-spacing {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .component-spacing {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Responsive Grid Layouts */
+@media (max-width: 1024px) {
+  .responsive-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .responsive-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Improved Form Elements for Mobile */
+@media (max-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    padding: 0.75rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Enhanced Mobile Performance */
+@media (max-width: 768px) {
+  .reduce-motion {
+    animation: none;
+    transform: none;
+  }
+
+  .optimize-mobile {
+    will-change: auto;
+    backface-visibility: visible;
+  }
+}
+
+/* Responsive Images */
+@media (max-width: 768px) {
+  .responsive-image {
+    max-height: 300px;
+    object-fit: cover;
+  }
+}
+
+/* Mobile-First Padding and Margins */
+.responsive-padding {
+  padding: clamp(1rem, 5vw, 2rem);
+}
+
+.responsive-margin {
+  margin: clamp(1rem, 5vw, 2rem);
+}
+
+/* Improved Mobile Scrolling */
+@media (max-width: 768px) {
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
