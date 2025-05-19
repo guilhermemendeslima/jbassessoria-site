@@ -1,8 +1,7 @@
-// ... início do arquivo permanece igual
+import React from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 
 const ServiceModal = ({ isOpen, closeModal, service }: any) => {
-  // ... resto do código permanece igual até o Dialog
-
   return (
     <Transition show={isOpen} as={React.Fragment}>
       <Dialog
@@ -42,6 +41,4 @@ const ServiceModal = ({ isOpen, closeModal, service }: any) => {
   );
 };
 
-// ... resto do arquivo permanece igual
-
-export default ServiceModal
+export default ServiceModal;
