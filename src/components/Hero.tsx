@@ -37,12 +37,14 @@ const Hero = () => {
                   Contabilidade
                 </span>
                 {' '}com{' '}
-                <span className="bg-gradient-to-r from-tertiary to-[#e8c88a] bg-clip-text text-transparent inline-block bg-[length:200%_100%]">
-                  Tradição
-                </span>
-                {' '}e{' '}
-                <span className="bg-gradient-to-br from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent inline-block bg-[length:200%_100%]">
-                  Inovação
+                <span className="whitespace-nowrap">
+                  <span className="bg-gradient-to-r from-tertiary to-[#e8c88a] bg-clip-text text-transparent inline-block bg-[length:200%_100%]">
+                    Tradição
+                  </span>
+                  {' '}e{' '}
+                  <span className="bg-gradient-to-br from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent inline-block bg-[length:200%_100%]">
+                    Inovação
+                  </span>
                 </span>
               </span>
               <span className="hidden sm:inline">
