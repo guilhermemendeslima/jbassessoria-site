@@ -24,46 +24,37 @@ body {
   overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-.perspective {
-  perspective: 1000px;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.animate-gradient-text {
-  animation: gradient 8s linear infinite;
-  background-size: 200% auto;
-}
-
-/* Floating Animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(2deg); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Background Gradient Animation */
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
+/* Mobile Responsive Base Styles */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply break-words;
   }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+
+  p {
+    @apply break-words;
   }
 }
 
-.bg-gradient-radial {
-  background: radial-gradient(circle at center, var(--tw-gradient-from) 0%, var(--tw-gradient-via) 50%, var(--tw-gradient-to) 100%);
+/* Container Padding */
+@layer components {
+  .container {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Responsive Text */
+@layer utilities {
+  .text-responsive {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+}
+
+/* Enhanced Grid Pattern */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(214,177,106,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214,177,106,0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 
 /* Button Hover Effects */
@@ -96,64 +87,6 @@ body {
 @keyframes shine {
   0% { transform: translateX(-100%) rotate(45deg); }
   100% { transform: translateX(100%) rotate(45deg); }
-}
-
-/* Enhanced Grid Pattern */
-.bg-grid-pattern {
-  background-image: 
-    linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
-  background-size: 30px 30px;
-  animation: grid-float 20s linear infinite;
-}
-
-@keyframes grid-float {
-  0% { transform: translateZ(0) rotate(0deg); }
-  100% { transform: translateZ(0) rotate(360deg); }
-}
-
-/* 3D Transform Styles */
-.transform-style-3d {
-  transform: perspective(1000px) rotateX(15deg) rotateY(15deg);
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.transform-style-preserve-3d {
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-}
-
-.hover\:transform-style-3d:hover {
-  transform: perspective(1000px) rotateX(15deg) rotateY(15deg) translateZ(20px);
-}
-
-.icon-3d-shadow {
-  box-shadow: 
-    0 10px 30px -10px rgba(0, 255, 0, 0.3),
-    0 5px 15px -5px rgba(0, 255, 0, 0.2);
-}
-
-.icon-3d-gradient {
-  background: transparent;
-  position: relative;
-}
-
-.icon-3d-gradient::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 0, 0.2) 0%,
-    rgba(0, 255, 0, 0.1) 100%
-  );
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
 }
 
 /* Instagram Carousel */
@@ -192,10 +125,6 @@ body {
 
   .form-group {
     @apply mb-4;
-  }
-
-  .reduce-motion {
-    @apply transform-none animate-none;
   }
 }
 
