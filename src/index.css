@@ -122,10 +122,20 @@
   transform-style: preserve-3d;
 }
 
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
 .animation-element {
   transition: transform 0.3s ease-out;
 }
 
 .animation-element:hover {
   transform: perspective(1000px) rotateY(15deg) translateZ(20px) !important;
+}
+
+.icon-element {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
 }

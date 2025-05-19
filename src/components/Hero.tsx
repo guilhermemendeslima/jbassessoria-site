@@ -4,27 +4,37 @@ import { Calculator, FileText, BarChart3, DollarSign, Building2, FileSearch } fr
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!heroRef.current) return;
-      const elements = heroRef.current.querySelectorAll('.animation-element');
+    const container = containerRef.current;
+    if (!container) return;
+
+    const icons = container.querySelectorAll('.icon-element');
+    const radius = 120; // Radius of the circle
+    const totalIcons = icons.length;
+
+    const animate = () => {
+      const time = Date.now() * 0.001; // Current time in seconds
       
-      const x = e.clientX / window.innerWidth;
-      const y = e.clientY / window.innerHeight;
-      
-      elements.forEach((el, index) => {
-        const htmlEl = el as HTMLElement;
-        const speed = 1 + index * 0.2;
-        const xOffset = (x - 0.5) * speed * 15;
-        const yOffset = (y - 0.5) * speed * 15;
+      icons.forEach((icon, index) => {
+        const angle = (index / totalIcons) * Math.PI * 2 + time;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        const z = Math.sin(angle * 2) * 30; // Add some depth variation
         
-        htmlEl.style.transform = `perspective(1000px) rotateY(${xOffset * 0.1}deg) translateZ(${yOffset}px)`;
+        const scale = (Math.sin(angle) + 2) / 2.5; // Scale based on position
+        const opacity = (Math.sin(angle) + 1.5) / 2; // Fade based on position
+        
+        const el = icon as HTMLElement;
+        el.style.transform = `translate3d(${x}px, ${y}px, ${z}px) scale(${scale})`;
+        el.style.opacity = `${opacity}`;
       });
+      
+      requestAnimationFrame(animate);
     };
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+
+    animate();
   }, []);
 
   const iconComponents = [
@@ -101,16 +111,39 @@ const Hero = () => {
           >
             <div className="relative aspect-square bg-gradient-to-br from-tertiary/5 to-transparent rounded-full p-8 transform-style-3d">
               <div className="absolute inset-0 bg-gradient-to-br from-tertiary/10 to-transparent rounded-full animate-pulse"></div>
-              <div className="relative grid grid-cols-2 gap-8 place-items-center h-full">
+              <div ref={containerRef} className="relative h-full flex items-center justify-center transform-style-preserve-3d">
+                <motion.div
+                  className="w-32 h-32 bg-tertiary/20 rounded-full flex items-center justify-center"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <img 
+                    src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg"
+                    alt="Central Image"
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </motion.div>
+                
                 {iconComponents.map(({ Icon, delay }, index) => (
                   <motion.div
                     key={index}
-                    className="animation-element p-6 bg-gradient-to-br from-tertiary/20 to-tertiary/5 rounded-2xl transform transition-transform duration-300 hover:scale-110"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: delay + 1, duration: 0.5 }}
+                    className="icon-element absolute p-4 bg-gradient-to-br from-tertiary/20 to-tertiary/5 rounded-2xl transform transition-all duration-300 hover:scale-110 cursor-pointer"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: delay + 0.5, duration: 0.5 }}
+                    whileHover={{
+                      z: 30,
+                      scale: 1.2,
+                      transition: { duration: 0.2 }
+                    }}
                   >
-                    <Icon className="w-12 h-12 text-tertiary" />
+                    <Icon className="w-8 h-8 text-tertiary" />
                   </motion.div>
                 ))}
               </div>
