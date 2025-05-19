@@ -32,7 +32,20 @@ const ServiceModal = ({ isOpen, closeModal, service }: any) => {
             leaveTo="opacity-0 scale-95"
           >
             <div className="inline-block w-full max-w-2xl p-4 md:p-6 my-8 text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl relative">
-              {/* ... resto do conteúdo do modal permanece igual */}
+              <Dialog.Title className="text-2xl font-bold text-gray-900">
+                {service?.title}
+              </Dialog.Title>
+              <div className="mt-4">
+                <p className="text-gray-600">{service?.description}</p>
+              </div>
+              <div className="mt-6">
+                <button
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  onClick={closeModal}
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </Transition.Child>
         </div>
