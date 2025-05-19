@@ -74,7 +74,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.div 
-            className="flex-1 md:flex-none md:w-[45%] relative perspective-1000"
+            className="hidden md:block flex-1 md:flex-none md:w-[45%] relative perspective-1000"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}

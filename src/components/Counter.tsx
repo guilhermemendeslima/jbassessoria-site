@@ -87,7 +87,7 @@ const Counter = () => {
           {counters.map((item, index) => (
             <div 
               key={index}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 transform hover:scale-105 transition-all duration-300"
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 transform hover:scale-105 transition-all duration-300 text-center"
             >
               <div className="counter-icon mb-4 flex justify-center">
                 <item.icon className="w-12 h-12 text-tertiary" />
@@ -95,7 +95,7 @@ const Counter = () => {
               <div className="text-tertiary mb-2">
                 <CountUp end={item.number} suffix={item.suffix} />
               </div>
-              <p className="text-secondary/90 text-sm">{item.label}</p>
+              <p className="text-secondary/90 text-sm text-center">{item.label}</p>
             </div>
           ))}
         </div>
