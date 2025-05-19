@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react';
 
 const ServiceModal = ({ isOpen, closeModal, service }: any) => {
   return (
-    <Transition show={isOpen} as={React.Fragment}>
+    <Transition appear show={isOpen} as={React.Fragment}>
       <Dialog
         as="div"
         className="fixed inset-0 z-50 overflow-y-auto"
