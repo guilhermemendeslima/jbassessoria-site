@@ -8,6 +8,7 @@ const serviceList = [
     icon: <Calculator className="w-10 h-10 text-tertiary group-hover:text-primary transition-colors duration-300" />,
     title: 'Contabilidade Empresarial',
     description: 'Serviços completos de contabilidade para empresas de todos os portes e segmentos.',
+    whatsappMessage: 'Olá! Gostaria de saber mais sobre os serviços de Contabilidade Empresarial da JB Assessoria.',
     details: {
       fullDescription: 'Nossa equipe especializada oferece serviços completos de contabilidade empresarial, incluindo escrituração contábil, elaboração de demonstrações financeiras, relatórios gerenciais personalizados e análise detalhada dos resultados financeiros da sua empresa.',
       benefits: [
@@ -23,6 +24,7 @@ const serviceList = [
     icon: <FileText className="w-10 h-10 text-tertiary group-hover:text-primary transition-colors duration-300" />,
     title: 'Fiscal e Tributário',
     description: 'Planejamento tributário e orientação para redução da carga tributária dentro da legalidade.',
+    whatsappMessage: 'Olá! Gostaria de saber mais sobre os serviços Fiscais e Tributários da JB Assessoria.',
     details: {
       fullDescription: 'Oferecemos consultoria fiscal e tributária completa, focando na otimização da carga tributária da sua empresa através de estratégias legais e eficientes. Nossa equipe mantém-se constantemente atualizada sobre as legislações fiscais.',
       benefits: [
@@ -38,6 +40,7 @@ const serviceList = [
     icon: <BarChart3 className="w-10 h-10 text-tertiary group-hover:text-primary transition-colors duration-300" />,
     title: 'Gestão Empresarial',
     description: 'Consultoria para gestão financeira e assessoria para tomada de decisões estratégicas.',
+    whatsappMessage: 'Olá! Gostaria de saber mais sobre os serviços de Gestão Empresarial da JB Assessoria.',
     details: {
       fullDescription: 'Fornecemos consultoria especializada em gestão empresarial, auxiliando na análise financeira, planejamento estratégico e tomada de decisões. Nosso objetivo é contribuir para o crescimento sustentável do seu negócio.',
       benefits: [
@@ -53,6 +56,7 @@ const serviceList = [
     icon: <DollarSign className="w-10 h-10 text-tertiary group-hover:text-primary transition-colors duration-300" />,
     title: 'Departamento Pessoal',
     description: 'Administração completa da folha de pagamento e rotinas trabalhistas.',
+    whatsappMessage: 'Olá! Gostaria de saber mais sobre os serviços de Departamento Pessoal da JB Assessoria.',
     details: {
       fullDescription: 'Gerenciamos todas as rotinas do departamento pessoal, desde admissões e demissões até o processamento da folha de pagamento e cumprimento das obrigações trabalhistas, garantindo conformidade com a legislação.',
       benefits: [
@@ -68,6 +72,7 @@ const serviceList = [
     icon: <Building2 className="w-10 h-10 text-tertiary group-hover:text-primary transition-colors duration-300" />,
     title: 'Abertura de Empresas',
     description: 'Assessoria completa para constituição de empresas e obtenção de licenças.',
+    whatsappMessage: 'Olá! Gostaria de saber mais sobre os serviços de Abertura de Empresas da JB Assessoria.',
     details: {
       fullDescription: 'Oferecemos suporte completo para abertura de empresas, desde a escolha do regime tributário até o registro nos órgãos competentes. Cuidamos de toda a documentação e processos necessários para iniciar seu negócio.',
       benefits: [
@@ -83,6 +88,7 @@ const serviceList = [
     icon: <FileSearch className="w-10 h-10 text-tertiary group-hover:text-primary transition-colors duration-300" />,
     title: 'Auditoria e Consultoria',
     description: 'Serviços de auditoria contábil e financeira, due diligence e revisão de processos.',
+    whatsappMessage: 'Olá! Gostaria de saber mais sobre os serviços de Auditoria e Consultoria da JB Assessoria.',
     details: {
       fullDescription: 'Realizamos auditorias contábeis e financeiras detalhadas, além de serviços de consultoria especializada para situações específicas. Nossa equipe possui vasta experiência em due diligence e revisão de processos.',
       benefits: [
@@ -97,6 +103,13 @@ const serviceList = [
 ];
 
 const ServiceModal = ({ isOpen, closeModal, service }: any) => {
+  const handleWhatsAppRedirect = () => {
+    const whatsappNumber = "5531996143534";
+    const message = encodeURIComponent(service.whatsappMessage);
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+    closeModal();
+  };
+
   return (
     <Transition show={isOpen} as={React.Fragment}>
       <Dialog
@@ -117,12 +130,7 @@ const ServiceModal = ({ isOpen, closeModal, service }: any) => {
             <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm" />
           </Transition.Child>
 
-          <span
-            className="inline-block h-screen align-middle"
-            aria-hidden="true"
-          >
-            &#8203;
-          </span>
+          <span className="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
 
           <Transition.Child
             as={React.Fragment}
@@ -133,7 +141,7 @@ const ServiceModal = ({ isOpen, closeModal, service }: any) => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="inline-block w-full max-w-2xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+            <div className="inline-block w-full max-w-2xl p-6 my-8 text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
               <div className="absolute top-4 right-4">
                 <button
                   onClick={closeModal}
@@ -180,10 +188,15 @@ const ServiceModal = ({ isOpen, closeModal, service }: any) => {
 
                 <div className="mt-6">
                   <button
-                    onClick={closeModal}
-                    className="w-full bg-tertiary text-primary font-semibold py-3 px-6 rounded-lg hover:bg-tertiary/90 transition-colors"
+                    onClick={handleWhatsAppRedirect}
+                    className="w-full bg-tertiary text-primary font-semibold py-3 px-6 rounded-lg hover:bg-tertiary/90 transition-colors flex items-center justify-center"
                   >
-                    Solicitar este serviço
+                    <span>Solicitar este serviço via WhatsApp</span>
+                    <motion.span 
+                      className="ml-2"
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 5 }}
+                    >→</motion.span>
                   </button>
                 </div>
               </div>
@@ -212,14 +225,17 @@ const Services = () => {
     <section id="serviços" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div 
-          className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
+          className="text-center max-w-3xl mx-auto mb-12 md:mb-16 relative"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
+          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+            <div className="w-20 h-1 bg-gradient-to-r from-tertiary/20 via-tertiary to-tertiary/20"></div>
+          </div>
           <h2 className="text-sm font-semibold text-tertiary uppercase tracking-wider">Nossos Serviços</h2>
-          <h3 className="mt-2 text-3xl md:text-4xl font-bold text-primary">
+          <h3 className="mt-2 text-3xl md:text-4xl font-bold text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary">
             Soluções completas para sua empresa
           </h3>
           <p className="mt-4 text-gray-600">
