@@ -4,43 +4,46 @@ import { Calculator, FileText, BarChart3, DollarSign, Building2, FileSearch } fr
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!heroRef.current) return;
-      const elements = heroRef.current.querySelectorAll('.icon-element');
+    const container = containerRef.current;
+    if (!container) return;
+
+    const icons = container.querySelectorAll('.icon-element');
+    const radius = 120; // Radius of the circle
+    const totalIcons = icons.length;
+
+    const animate = () => {
+      const time = Date.now() * 0.001; // Current time in seconds
       
-      const x = e.clientX / window.innerWidth;
-      const y = e.clientY / window.innerHeight;
-      
-      elements.forEach((el, index) => {
-        const htmlEl = el as HTMLElement;
-        const depth = 1 + index * 0.5;
-        const translateX = (x - 0.5) * depth * 30;
-        const translateY = (y - 0.5) * depth * 30;
-        const rotateX = (y - 0.5) * depth * 20;
-        const rotateY = (x - 0.5) * depth * 20;
+      icons.forEach((icon, index) => {
+        const angle = (index / totalIcons) * Math.PI * 2 + time;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        const z = Math.sin(angle * 2) * 30; // Add some depth variation
         
-        htmlEl.style.transform = `
-          perspective(1000px)
-          translate3d(${translateX}px, ${translateY}px, ${depth * 50}px)
-          rotateX(${rotateX}deg)
-          rotateY(${rotateY}deg)
-        `;
+        const scale = (Math.sin(angle) + 2) / 2.5; // Scale based on position
+        const opacity = (Math.sin(angle) + 1.5) / 2; // Fade based on position
+        
+        const el = icon as HTMLElement;
+        el.style.transform = `translate3d(${x}px, ${y}px, ${z}px) scale(${scale})`;
+        el.style.opacity = `${opacity}`;
       });
+      
+      requestAnimationFrame(animate);
     };
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+
+    animate();
   }, []);
 
   const iconComponents = [
-    { Icon: Calculator, position: 'top-10 -right-4', delay: 0 },
-    { Icon: FileText, position: 'top-1/4 -right-8', delay: 0.2 },
-    { Icon: BarChart3, position: 'top-1/2 -right-4', delay: 0.4 },
-    { Icon: DollarSign, position: 'bottom-1/4 -right-8', delay: 0.6 },
-    { Icon: Building2, position: 'bottom-20 -right-4', delay: 0.8 },
-    { Icon: FileSearch, position: 'bottom-0 right-1/4', delay: 1 }
+    { Icon: Calculator, delay: 0 },
+    { Icon: FileText, delay: 0.2 },
+    { Icon: BarChart3, delay: 0.4 },
+    { Icon: DollarSign, delay: 0.6 },
+    { Icon: Building2, delay: 0.8 },
+    { Icon: FileSearch, delay: 1 }
   ];
 
   return (
@@ -50,10 +53,10 @@ const Hero = () => {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
           <motion.div 
-            className="flex-1 text-center md:text-left md:max-w-[60%]"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="flex-1 text-center md:text-left"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold text-secondary leading-tight mb-8">
               Simplificamos sua contabilidade com{' '}
@@ -64,10 +67,10 @@ const Hero = () => {
               </span>
             </h1>
             <motion.p 
-              className="mt-8 text-secondary/80 text-lg md:text-xl leading-relaxed"
+              className="mt-8 text-secondary/80 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+              transition={{ delay: 0.3, duration: 0.8 }}
             >
               Há mais de 35 anos oferecendo soluções contábeis personalizadas para empresas em Sete Lagoas e região. Conte com nossa experiência para impulsionar o crescimento do seu negócio com segurança e eficiência.
             </motion.p>
@@ -75,27 +78,25 @@ const Hero = () => {
               className="mt-10 flex flex-col sm:flex-row gap-6 justify-center md:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8, ease: "easeInOut" }}
+              transition={{ delay: 0.6, duration: 0.8 }}
             >
-              <button className="group bg-tertiary hover:bg-tertiary/90 text-primary px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-800 ease-in-out transform hover:scale-105">
+              <button className="group bg-tertiary hover:bg-tertiary/90 text-primary px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-300 transform hover:scale-105">
                 <span className="flex items-center justify-center">
                   Conheça nossos serviços
                   <motion.span 
                     className="ml-2"
                     initial={{ x: 0 }}
                     whileHover={{ x: 5 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
                   >→</motion.span>
                 </span>
               </button>
-              <button className="group bg-transparent border-2 border-tertiary text-tertiary px-8 py-4 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-800 ease-in-out">
+              <button className="group bg-transparent border-2 border-tertiary text-tertiary px-8 py-4 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-300">
                 <span className="flex items-center justify-center">
                   Fale com um especialista
                   <motion.span 
                     className="ml-2"
                     initial={{ x: 0 }}
                     whileHover={{ x: 5 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
                   >→</motion.span>
                 </span>
               </button>
@@ -103,46 +104,49 @@ const Hero = () => {
           </motion.div>
           
           <motion.div 
-            className="flex-1 md:flex-none md:w-[40%] relative transform-style-preserve-3d"
+            className="flex-1 md:flex-none md:w-[45%] relative perspective-1000"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+            transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-tertiary/20 to-transparent mix-blend-overlay"></div>
-              <motion.img
-                src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg"
-                alt="Professional team"
-                className="w-full h-full object-cover"
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent"></div>
-              
-              {iconComponents.map(({ Icon, position, delay }, index) => (
+            <div className="relative aspect-square bg-gradient-to-br from-tertiary/5 to-transparent rounded-full p-8 transform-style-3d">
+              <div className="absolute inset-0 bg-gradient-to-br from-tertiary/10 to-transparent rounded-full animate-pulse"></div>
+              <div ref={containerRef} className="relative h-full flex items-center justify-center transform-style-preserve-3d">
                 <motion.div
-                  key={index}
-                  className={`icon-element absolute ${position} p-4 bg-white/10 backdrop-blur-sm rounded-2xl shadow-lg`}
-                  initial={{ opacity: 0, scale: 0, z: -100 }}
-                  animate={{ opacity: 1, scale: 1, z: 0 }}
-                  transition={{ delay: delay + 0.5, duration: 0.8, ease: "easeInOut" }}
+                  className="w-32 h-32 bg-tertiary/20 rounded-full flex items-center justify-center"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
                 >
-                  <Icon className="w-8 h-8 text-tertiary" />
+                  <img 
+                    src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg"
+                    alt="Central Image"
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </motion.div>
-              ))}
-
-              <motion.div 
-                className="absolute -bottom-1 -right-1 transform translate-y-1/4 translate-x-1/4"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.6, duration: 0.8, ease: "easeInOut" }}
-              >
-                <div className="bg-white rounded-full p-6 shadow-xl">
-                  <p className="text-primary font-bold text-4xl">35<span className="text-tertiary">+</span></p>
-                  <p className="text-gray-600 whitespace-nowrap">Anos de experiência</p>
-                </div>
-              </motion.div>
+                
+                {iconComponents.map(({ Icon, delay }, index) => (
+                  <motion.div
+                    key={index}
+                    className="icon-element absolute p-4 bg-gradient-to-br from-tertiary/20 to-tertiary/5 rounded-2xl transform transition-all duration-300 hover:scale-110 cursor-pointer"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: delay + 0.5, duration: 0.5 }}
+                    whileHover={{
+                      z: 30,
+                      scale: 1.2,
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    <Icon className="w-8 h-8 text-tertiary" />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
