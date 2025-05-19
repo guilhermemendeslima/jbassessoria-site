@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, MessageSquare } from 'lucide-react';
+import { ChevronRight, MessageSquare, MousePointer, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -61,15 +61,63 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Sua{' '}
-              <span className="text-tertiary">Contabilidade</span>
-              {' '}em{' '}
-              <span className="text-tertiary">Boas Mãos</span>
+              Simplificamos sua{' '}
+              <motion.span
+                className="text-tertiary inline-block"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  opacity: [1, 0.8, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                Contabilidade
+              </motion.span>
+              {' '}com{' '}
+              <span className="relative">
+                <motion.span
+                  className="text-tertiary inline-block"
+                  animate={{
+                    y: [0, -5, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5
+                  }}
+                >
+                  Tradição
+                </motion.span>
+                {' '}e{' '}
+                <motion.span
+                  className="text-tertiary inline-block"
+                  animate={{
+                    rotate: [0, 5, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                >
+                  Inovação
+                </motion.span>
+              </span>
             </h1>
             
-            <p className="text-white/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
+            <motion.p
+              className="text-white/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
               Há mais de 35 anos oferecendo soluções contábeis personalizadas e inovadoras para empresas de todos os portes.
-            </p>
+            </motion.p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <motion.a
@@ -101,6 +149,22 @@ const Hero = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 flex flex-col items-center gap-2"
+        animate={{
+          y: [0, 10, 0],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      >
+        <span className="text-sm font-medium">Role para baixo</span>
+        <ChevronDown className="w-6 h-6" />
+      </motion.div>
 
       {/* Decorative Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--mouse-x,0.5)_var(--mouse-y,0.5),rgba(214,177,106,0.1),transparent_50%)]" />
