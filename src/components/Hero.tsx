@@ -28,10 +28,8 @@ const Hero = () => {
 
   return (
     <div id="início" ref={heroRef} className="relative overflow-hidden bg-primary min-h-screen pt-24 pb-16 md:pt-32 md:pb-24">
-      {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-tertiary/10"></div>
 
-      {/* 3D Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="animation-element absolute top-[10%] left-[10%] w-24 h-24 rounded-full bg-tertiary/10 animate-float"></div>
         <div className="animation-element absolute top-[30%] left-[80%] w-32 h-32 rounded-full bg-tertiary/20 animate-float" style={{ animationDelay: '1s' }}></div>
@@ -51,10 +49,9 @@ const Hero = () => {
             <h1 className="text-4xl md:text-6xl font-bold text-secondary leading-tight">
               Simplificamos sua contabilidade com{' '}
               <span className="relative inline-block">
-                <span className="relative z-10 text-tertiary shimmer-text">
+                <span className="relative z-10 text-tertiary animate-gradient-text bg-gradient-to-r from-[#d6b16a] via-[#f3d5a5] to-[#d6b16a] bg-clip-text text-transparent bg-[length:200%_auto]">
                   tradição e inovação
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-tertiary/0 via-tertiary/30 to-tertiary/0 shimmer-effect"></span>
               </span>
             </h1>
             <motion.p 
@@ -63,7 +60,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              Há mais de 35 anos oferecendo soluções contábeis personalizadas para empresas em Sete Lagoas e região.
+              Há mais de 35 anos oferecendo soluções contábeis personalizadas para empresas em Sete Lagoas e região. Conte com nossa experiência para impulsionar o crescimento do seu negócio.
             </motion.p>
             <motion.div 
               className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
