@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Calculator, FileText, BarChart3, DollarSign, PieChart, ClipboardCheck, MousePointer, ChevronDown } from 'lucide-react';
+import { Calculator, FileText, BarChart3, DollarSign, PieChart, ClipboardCheck, Mouse, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -123,11 +123,11 @@ const Hero = () => {
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
                 <motion.button 
-                  className="group bg-tertiary hover:bg-tertiary/90 text-primary px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-300"
+                  className="group bg-tertiary hover:bg-tertiary/90 text-primary px-6 py-3 md:px-8 md:py-4 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="flex items-center justify-center text-lg">
+                  <span className="flex items-center justify-center text-base md:text-lg">
                     Conheça nossos serviços
                     <motion.span 
                       className="ml-2"
@@ -137,11 +137,11 @@ const Hero = () => {
                   </span>
                 </motion.button>
                 <motion.button 
-                  className="group bg-transparent border-2 border-tertiary text-tertiary px-8 py-4 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-300"
+                  className="group bg-transparent border-2 border-tertiary text-tertiary px-6 py-3 md:px-8 md:py-4 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="flex items-center justify-center text-lg">
+                  <span className="flex items-center justify-center text-base md:text-lg">
                     Fale com um especialista
                     <motion.span 
                       className="ml-2"
@@ -201,7 +201,7 @@ const Hero = () => {
                 ease: "easeInOut"
               }}
             >
-              <MousePointer className="w-6 h-6" />
+              <Mouse className="w-8 h-8" />
             </motion.div>
             <span className="text-sm">Role para baixo</span>
           </div>
@@ -218,7 +218,7 @@ const Hero = () => {
             >
               <ChevronDown className="w-6 h-6" />
             </motion.div>
-            <span className="text-sm">Deslize para baixo</span>
+            <span className="text-sm">Deslize</span>
           </div>
         </motion.div>
       </div>

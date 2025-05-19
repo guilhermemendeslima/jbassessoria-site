@@ -1,6 +1,8 @@
 import React from 'react';
 import { Instagram as InstagramIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useKeenSlider } from 'keen-slider/react';
+import 'keen-slider/keen-slider.min.css';
 
 const Instagram = () => {
   const posts = [
@@ -17,6 +19,21 @@ const Instagram = () => {
       caption: "Simplificando a gestão financeira da sua empresa com serviços contábeis personalizados para o seu negócio.",
     },
   ];
+
+  const [sliderRef] = useKeenSlider({
+    slides: {
+      perView: 1.2,
+      spacing: 16,
+    },
+    breakpoints: {
+      '(min-width: 768px)': {
+        slides: {
+          perView: 3,
+          spacing: 24,
+        },
+      },
+    },
+  });
 
   const handleInstagramClick = () => {
     window.open('https://www.instagram.com/jbassessoriaecontabilidade', '_blank');
@@ -42,24 +59,24 @@ const Instagram = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div ref={sliderRef} className="keen-slider mb-10">
           {posts.map((post, index) => (
             <motion.div 
               key={index}
-              className="instagram-grid-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer"
+              className="keen-slider__slide"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
               onClick={handleInstagramClick}
             >
-              <div className="aspect-square">
+              <div className="relative aspect-square rounded-xl overflow-hidden shadow-lg cursor-pointer">
                 <img 
                   src={post.image}
                   alt="Instagram post"
                   className="w-full h-full object-cover"
                 />
-                <div className="instagram-overlay absolute inset-0 flex flex-col justify-end p-4">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent p-4 flex flex-col justify-end">
                   <p className="text-white text-sm mb-2">{post.caption}</p>
                   <div className="flex items-center">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 flex items-center justify-center">
