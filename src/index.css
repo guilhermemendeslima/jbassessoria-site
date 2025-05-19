@@ -16,6 +16,7 @@
 /* Smooth Scroll */
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .perspective {
@@ -275,190 +276,107 @@ html {
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    @apply px-4;
   }
-  
+
   h1 {
-    font-size: 2.25rem;
-    line-height: 1.2;
+    @apply text-3xl leading-tight;
   }
-  
+
   h2 {
-    font-size: 1.875rem;
+    @apply text-2xl;
   }
-  
+
   h3 {
-    font-size: 1.5rem;
+    @apply text-xl;
   }
-  
-  .section-padding {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+
+  .section-spacing {
+    @apply py-12;
   }
 
   .grid {
-    gap: 1.5rem;
+    @apply gap-6;
   }
 
   .card-padding {
-    padding: 1.25rem;
-  }
-}
-
-@media (max-width: 640px) {
-  h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-  
-  h3 {
-    font-size: 1.25rem;
+    @apply p-4;
   }
 
-  .button-text {
-    font-size: 0.875rem;
-  }
-
-  .grid {
-    gap: 1rem;
-  }
-
-  .card-padding {
-    padding: 1rem;
-  }
-}
-
-/* Enhanced Mobile Navigation */
-@media (max-width: 768px) {
   .mobile-menu {
-    position: fixed;
-    top: 4rem;
-    left: 0;
-    right: 0;
-    background-color: var(--color-primary);
-    padding: 1rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    @apply fixed top-16 left-0 right-0 bg-primary p-4 shadow-lg;
   }
 
   .mobile-menu-item {
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
+    @apply block py-3 px-4 rounded-lg transition-colors hover:bg-white/10;
   }
 
-  .mobile-menu-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-}
-
-/* Improved Touch Targets for Mobile */
-@media (max-width: 640px) {
-  button, 
-  a {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  .touch-target {
-    padding: 0.75rem;
-  }
-}
-
-/* Responsive Typography */
-@media (max-width: 768px) {
-  .text-responsive {
-    font-size: clamp(1rem, 4vw, 1.25rem);
-  }
-
-  .heading-responsive {
-    font-size: clamp(1.5rem, 6vw, 2.25rem);
-  }
-}
-
-/* Responsive Spacing */
-@media (max-width: 768px) {
-  .section-spacing {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .component-spacing {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-}
-
-/* Responsive Grid Layouts */
-@media (max-width: 1024px) {
-  .responsive-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .responsive-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Improved Form Elements for Mobile */
-@media (max-width: 768px) {
   input,
   select,
   textarea {
-    font-size: 16px; /* Prevents iOS zoom on focus */
-    padding: 0.75rem;
+    @apply text-base py-3 px-4;
   }
 
   .form-group {
-    margin-bottom: 1rem;
+    @apply mb-4;
   }
-}
 
-/* Enhanced Mobile Performance */
-@media (max-width: 768px) {
   .reduce-motion {
-    animation: none;
-    transform: none;
+    @apply transform-none animate-none;
   }
 
-  .optimize-mobile {
-    will-change: auto;
-    backface-visibility: visible;
-  }
-}
-
-/* Responsive Images */
-@media (max-width: 768px) {
   .responsive-image {
-    max-height: 300px;
-    object-fit: cover;
+    @apply max-h-[300px] object-cover;
   }
 }
 
-/* Mobile-First Padding and Margins */
-.responsive-padding {
-  padding: clamp(1rem, 5vw, 2rem);
-}
+@media (max-width: 640px) {
+  h1 {
+    @apply text-2xl;
+  }
 
-.responsive-margin {
-  margin: clamp(1rem, 5vw, 2rem);
-}
+  h2 {
+    @apply text-xl;
+  }
 
-/* Improved Mobile Scrolling */
-@media (max-width: 768px) {
-  .smooth-scroll {
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+  h3 {
+    @apply text-lg;
+  }
+
+  .button-text {
+    @apply text-sm;
+  }
+
+  .grid {
+    @apply gap-4;
+  }
+
+  .card-padding {
+    @apply p-3;
+  }
+
+  button,
+  a {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  .touch-target {
+    @apply p-3;
   }
 }
 
-/* Correção de overflow */
+/* Improved Mobile Performance */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .modal-content {
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }

@@ -15,44 +15,44 @@ const Hero = () => {
   ];
 
   return (
-    <div id="início" className="relative bg-primary min-h-[calc(100vh-4rem)] md:min-h-screen flex items-center">
+    <div id="início" className="relative bg-primary min-h-[100svh] flex items-center">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.15),transparent_70%),radial-gradient(circle_at_bottom_left,rgba(255,249,249,0.1),transparent_70%)]" />
       <div className="absolute inset-0 bg-grid-pattern opacity-20" />
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10 py-12 md:py-0">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
+      <div className="container mx-auto px-4 md:px-6 relative z-10 py-16 md:py-0">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
           {/* Left Content */}
           <div className="w-full md:w-1/2 text-center md:text-left">
             <motion.div 
-              className="max-w-xl mx-auto md:mx-0"
+              className="max-w-2xl mx-auto md:mx-0"
               initial="initial"
               animate="animate"
               variants={fadeIn}
             >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-4 md:mb-6 leading-tight">
                 Simplificamos sua contabilidade com{' '}
-                <span className="text-tertiary animate-gradient-text bg-gradient-to-r from-tertiary via-[#f3d5a5] to-tertiary bg-clip-text">
+                <span className="text-tertiary animate-gradient-text bg-gradient-to-r from-tertiary via-[#f3d5a5] to-tertiary bg-clip-text text-transparent">
                   tradição
                 </span>{' '}
                 e{' '}
-                <span className="text-tertiary animate-gradient-text bg-gradient-to-r from-tertiary via-[#f3d5a5] to-tertiary bg-clip-text">
+                <span className="text-tertiary animate-gradient-text bg-gradient-to-r from-tertiary via-[#f3d5a5] to-tertiary bg-clip-text text-transparent">
                   inovação
                 </span>
               </h1>
-              <p className="text-secondary/80 text-base sm:text-lg md:text-xl mb-8 max-w-lg mx-auto md:mx-0">
+              <p className="text-secondary/80 text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-lg mx-auto md:mx-0">
                 Mais de 35 anos de experiência em soluções contábeis personalizadas para o seu negócio crescer com segurança e confiança.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
                 <a 
                   href="#serviços"
-                  className="bg-tertiary hover:brightness-110 text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all hover:shadow-lg hover-shine inline-flex items-center justify-center text-sm sm:text-base"
+                  className="bg-tertiary hover:brightness-110 text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all hover:shadow-lg hover-shine inline-flex items-center justify-center text-sm sm:text-base whitespace-nowrap"
                 >
                   Ver nossos serviços
                 </a>
                 <a 
                   href="#contato"
-                  className="bg-white/10 hover:bg-white/20 text-secondary px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all hover:shadow-lg inline-flex items-center justify-center backdrop-blur-sm text-sm sm:text-base"
+                  className="bg-white/10 hover:bg-white/20 text-secondary px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all hover:shadow-lg inline-flex items-center justify-center backdrop-blur-sm text-sm sm:text-base whitespace-nowrap"
                 >
                   Falar com especialista
                 </a>
@@ -95,29 +95,29 @@ const Hero = () => {
             </div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-secondary/80 hidden md:flex flex-col items-center gap-2"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.8 }}
-      >
-        <motion.div
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-secondary/80 hidden md:flex flex-col items-center gap-2"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.8 }}
         >
-          <Mouse className="w-6 h-6" />
+          <motion.div
+            animate={{
+              y: [0, 10, 0],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Mouse className="w-6 h-6" />
+          </motion.div>
+          <span className="text-sm">Role para baixo</span>
         </motion.div>
-        <span className="text-sm">Role para baixo</span>
-      </motion.div>
+      </div>
     </div>
   );
 };
