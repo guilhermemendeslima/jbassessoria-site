@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram as InstagramIcon } from 'lucide-react';
+import { Instagram as InstagramIcon, Heart, MessageCircle, Share2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Instagram = () => {
@@ -7,14 +7,20 @@ const Instagram = () => {
     {
       image: "https://images.pexels.com/photos/6694543/pexels-photo-6694543.jpeg",
       caption: "Novidades sobre a declaração do Imposto de Renda 2025! Entre em contato para garantir que sua declaração esteja correta e otimizada.",
+      likes: "234",
+      comments: "45"
     },
     {
       image: "https://images.pexels.com/photos/6693661/pexels-photo-6693661.jpeg",
       caption: "Nossa equipe em constante aprimoramento! Participando de treinamentos para melhor atender nossos clientes.",
+      likes: "187",
+      comments: "32"
     },
     {
       image: "https://images.pexels.com/photos/6476260/pexels-photo-6476260.jpeg",
       caption: "Simplificando a gestão financeira da sua empresa com serviços contábeis personalizados para o seu negócio.",
+      likes: "312",
+      comments: "56"
     },
   ];
 
@@ -42,7 +48,56 @@ const Instagram = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        {/* Mobile Instagram Feed */}
+        <div className="md:hidden overflow-x-auto pb-6 -mx-4">
+          <div className="flex space-x-4 px-4" style={{ minWidth: 'max-content' }}>
+            {posts.map((post, index) => (
+              <motion.div 
+                key={index}
+                className="w-72 bg-white rounded-xl shadow-lg"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+              >
+                <div className="p-3 border-b">
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 flex items-center justify-center">
+                      <InstagramIcon className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="ml-2 font-medium">@jbassessoriaecontabilidade</span>
+                  </div>
+                </div>
+                <div className="aspect-square">
+                  <img 
+                    src={post.image}
+                    alt="Instagram post"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  <div className="flex items-center space-x-4 mb-3">
+                    <button className="flex items-center space-x-1">
+                      <Heart className="w-6 h-6" />
+                      <span>{post.likes}</span>
+                    </button>
+                    <button className="flex items-center space-x-1">
+                      <MessageCircle className="w-6 h-6" />
+                      <span>{post.comments}</span>
+                    </button>
+                    <button className="flex items-center space-x-1">
+                      <Share2 className="w-6 h-6" />
+                    </button>
+                  </div>
+                  <p className="text-sm line-clamp-3">{post.caption}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Instagram Grid */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {posts.map((post, index) => (
             <motion.div 
               key={index}

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Calculator, FileText, BarChart3, DollarSign, PieChart, ClipboardCheck, Mouse } from 'lucide-react';
+import { Calculator, FileText, BarChart3, DollarSign, PieChart, ClipboardCheck, Mouse, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -182,13 +182,14 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator - Desktop Only */}
+      {/* Scroll Indicator */}
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-secondary/80"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.8 }}
       >
+        {/* Desktop Scroll Indicator */}
         <div className="hidden md:flex flex-col items-center gap-2">
           <motion.div
             animate={{
@@ -201,6 +202,23 @@ const Hero = () => {
             }}
           >
             <Mouse className="w-6 h-6" />
+          </motion.div>
+          <span className="text-sm">Role para baixo</span>
+        </div>
+
+        {/* Mobile Scroll Indicator */}
+        <div className="flex md:hidden flex-col items-center gap-2">
+          <motion.div
+            animate={{
+              y: [0, 10, 0],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <ChevronDown className="w-8 h-8" />
           </motion.div>
           <span className="text-sm">Role para baixo</span>
         </div>
