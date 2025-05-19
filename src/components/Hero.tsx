@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Calculator, FileText, BarChart3, DollarSign, PieChart, ClipboardCheck, MousePointer, ChevronDown } from 'lucide-react';
+import { Calculator, FileText, BarChart3, DollarSign, PieChart, ClipboardCheck, Mouse } from 'lucide-react';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -79,14 +79,14 @@ const Hero = () => {
       </div>
 
       <div ref={containerRef} className="container mx-auto px-4 md:px-6 relative z-10 h-full flex items-center">
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full">
           <motion.div 
-            className="flex-1 text-center md:text-left"
+            className="w-full md:w-1/2 text-center md:text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-secondary leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-secondary leading-tight mb-6">
               Simplificamos sua contabilidade com{' '}
               <motion.span 
                 className="relative inline-block text-tertiary"
@@ -108,7 +108,7 @@ const Hero = () => {
               </motion.span>
             </h1>
             <motion.p 
-              className="mt-6 text-secondary/80 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 leading-relaxed"
+              className="mt-6 text-secondary/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto md:mx-0 leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
@@ -122,11 +122,11 @@ const Hero = () => {
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               <motion.button 
-                className="group bg-tertiary hover:bg-tertiary/90 text-primary px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-300"
+                className="w-full sm:w-auto bg-tertiary hover:bg-tertiary/90 text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="flex items-center justify-center text-lg">
+                <span className="flex items-center justify-center text-base sm:text-lg">
                   Conheça nossos serviços
                   <motion.span 
                     className="ml-2"
@@ -136,11 +136,11 @@ const Hero = () => {
                 </span>
               </motion.button>
               <motion.button 
-                className="group bg-transparent border-2 border-tertiary text-tertiary px-8 py-4 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-300"
+                className="w-full sm:w-auto bg-transparent border-2 border-tertiary text-tertiary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="flex items-center justify-center text-lg">
+                <span className="flex items-center justify-center text-base sm:text-lg">
                   Fale com um especialista
                   <motion.span 
                     className="ml-2"
@@ -153,7 +153,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.div 
-            className="hidden md:block flex-1 md:flex-none md:w-[40%] relative perspective-1000"
+            className="hidden md:block w-1/2 relative perspective-1000"
             style={{ rotateX, rotateY }}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -182,7 +182,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - Desktop Only */}
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-secondary/80"
         initial={{ opacity: 0, y: -20 }}
@@ -200,24 +200,9 @@ const Hero = () => {
               ease: "easeInOut"
             }}
           >
-            <MousePointer className="w-6 h-6" />
+            <Mouse className="w-6 h-6" />
           </motion.div>
           <span className="text-sm">Role para baixo</span>
-        </div>
-        <div className="md:hidden flex flex-col items-center gap-2">
-          <motion.div
-            animate={{
-              y: [0, 10, 0],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <ChevronDown className="w-6 h-6" />
-          </motion.div>
-          <span className="text-sm">Deslize para baixo</span>
         </div>
       </motion.div>
     </div>
