@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { FileText, Users, BarChart3, DollarSign, ChevronRight } from 'lucide-react';
+import { FileText, Users, BarChart3, DollarSign, ChevronRight, MessageSquare } from 'lucide-react';
 
 interface Service {
   icon: React.ElementType;
@@ -14,6 +14,16 @@ const ServiceModal = ({ isOpen, closeModal, service }: {
   closeModal: () => void;
   service: Service | null;
 }) => {
+  const handleWhatsAppClick = () => {
+    if (service) {
+      const message = encodeURIComponent(
+        `Olá! Gostaria de saber mais sobre o serviço de ${service.title}.`
+      );
+      const whatsappNumber = "5531996143534";
+      window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+    }
+  };
+
   return (
     <Transition show={isOpen} as={React.Fragment}>
       <Dialog
@@ -65,9 +75,16 @@ const ServiceModal = ({ isOpen, closeModal, service }: {
                       ))}
                     </div>
                   </div>
-                  <div className="mt-8 flex justify-end">
+                  <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-end">
                     <button
-                      className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+                      className="w-full sm:w-auto bg-tertiary text-primary px-6 py-3 rounded-lg hover:bg-tertiary/90 transition-colors flex items-center justify-center gap-2"
+                      onClick={handleWhatsAppClick}
+                    >
+                      <MessageSquare className="w-5 h-5" />
+                      Falar sobre este serviço
+                    </button>
+                    <button
+                      className="w-full sm:w-auto bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
                       onClick={closeModal}
                     >
                       Fechar
