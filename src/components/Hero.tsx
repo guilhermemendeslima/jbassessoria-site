@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Calculator, FileText, BarChart3, DollarSign, PieChart, ClipboardCheck } from 'lucide-react';
+import { Calculator, FileText, BarChart3, DollarSign, PieChart, ClipboardCheck, MousePointer, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,7 +38,7 @@ const Hero = () => {
     { Icon: ClipboardCheck, delay: 0.5 }
   ];
 
-  const particles = Array.from({ length: 20 }).map((_, i) => ({
+  const particles = Array.from({ length: 30 }).map((_, i) => ({
     id: i,
     size: Math.random() * 6 + 4,
     x: Math.random() * 100,
@@ -47,7 +47,7 @@ const Hero = () => {
   }));
 
   return (
-    <div id="início" className="relative overflow-hidden bg-primary min-h-screen pt-16 md:pt-20">
+    <div id="início" className="relative overflow-hidden bg-primary min-h-[90vh] pt-16 md:pt-20">
       {/* Animated Background Particles */}
       {particles.map((particle) => (
         <motion.div
@@ -72,21 +72,21 @@ const Hero = () => {
 
       <div className="absolute inset-0">
         <motion.div 
-          className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.15),transparent_70%),radial-gradient(circle_at_bottom_left,rgba(255,249,249,0.1),transparent_70%)]"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.25),transparent_70%),radial-gradient(circle_at_bottom_left,rgba(255,249,249,0.15),transparent_70%)]"
           style={{ rotateX, rotateY }}
         />
-        <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-20" />
       </div>
 
       <div ref={containerRef} className="container mx-auto px-4 md:px-6 relative z-10 h-full flex items-center">
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 py-8">
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 py-12 md:py-20">
           <motion.div 
             className="flex-1 text-center md:text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl md:text-5xl font-bold text-secondary leading-tight mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-secondary leading-tight mb-6">
               Simplificamos sua contabilidade com{' '}
               <motion.span 
                 className="relative inline-block text-tertiary"
@@ -108,7 +108,7 @@ const Hero = () => {
               </motion.span>
             </h1>
             <motion.p 
-              className="mt-6 text-secondary/80 text-base md:text-lg max-w-2xl mx-auto md:mx-0 leading-relaxed"
+              className="mt-6 text-secondary/80 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
@@ -122,11 +122,11 @@ const Hero = () => {
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               <motion.button 
-                className="group bg-tertiary hover:bg-tertiary/90 text-primary px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-300"
+                className="group bg-tertiary hover:bg-tertiary/90 text-primary px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-tertiary/20 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="flex items-center justify-center">
+                <span className="flex items-center justify-center text-lg">
                   Conheça nossos serviços
                   <motion.span 
                     className="ml-2"
@@ -136,11 +136,11 @@ const Hero = () => {
                 </span>
               </motion.button>
               <motion.button 
-                className="group bg-transparent border-2 border-tertiary text-tertiary px-6 py-3 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-300"
+                className="group bg-transparent border-2 border-tertiary text-tertiary px-8 py-4 rounded-lg font-semibold hover:bg-tertiary/10 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="flex items-center justify-center">
+                <span className="flex items-center justify-center text-lg">
                   Fale com um especialista
                   <motion.span 
                     className="ml-2"
@@ -159,7 +159,7 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-6 rounded-2xl backdrop-blur-sm transform-style-preserve-3d hover:transform-style-3d transition-all duration-500">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-8 rounded-2xl backdrop-blur-sm transform-style-preserve-3d hover:transform-style-3d transition-all duration-500">
               {icons.map(({ Icon, delay }, index) => (
                 <motion.div
                   key={index}
@@ -174,13 +174,52 @@ const Hero = () => {
                     z: 50
                   }}
                 >
-                  <Icon className="w-10 h-10 text-tertiary transform-style-preserve-3d" />
+                  <Icon className="w-12 h-12 text-tertiary transform-style-preserve-3d" />
                 </motion.div>
               ))}
             </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-secondary/80"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+      >
+        <div className="hidden md:flex flex-col items-center gap-2">
+          <motion.div
+            animate={{
+              y: [0, 10, 0],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <MousePointer className="w-6 h-6" />
+          </motion.div>
+          <span className="text-sm">Role para baixo</span>
+        </div>
+        <div className="md:hidden flex flex-col items-center gap-2">
+          <motion.div
+            animate={{
+              y: [0, 10, 0],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <ChevronDown className="w-6 h-6" />
+          </motion.div>
+          <span className="text-sm">Deslize para baixo</span>
+        </div>
+      </motion.div>
     </div>
   );
 };
