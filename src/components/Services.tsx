@@ -43,3 +43,5 @@ const ServiceModal = ({ isOpen, closeModal, service }: any) => {
 };
 
 // ... resto do arquivo permanece igual
+
+export default ServiceModal
