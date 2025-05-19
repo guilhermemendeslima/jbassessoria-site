@@ -9,11 +9,9 @@ const AboutUs = () => {
           <div className="lg:w-1/2">
             <div className="relative">
               <div className="bg-tertiary/20 absolute -inset-4 rounded-xl rotate-3 transform"></div>
-              <img 
-                src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg" 
-                alt="Equipe JB Assessoria" 
-                className="relative rounded-xl shadow-lg w-full h-auto object-cover z-10"
-              />
+              <div className="relative rounded-xl shadow-lg w-full h-[400px] bg-gradient-to-br from-tertiary/10 to-tertiary/5 z-10 flex items-center justify-center">
+                <Award className="w-20 h-20 text-tertiary/50" />
+              </div>
               <div className="absolute -bottom-5 -right-5 bg-white rounded-lg shadow-lg p-4 z-20">
                 <p className="text-primary font-bold text-4xl">35<span className="text-tertiary">+</span></p>
                 <p className="text-gray-600">Anos de experiência</p>
