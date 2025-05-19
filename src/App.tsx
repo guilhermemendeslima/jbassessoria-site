@@ -10,14 +10,16 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#fff9f9] font-montserrat">
+    <div className="bg-[#fff9f9] font-montserrat">
       <Header />
-      <Hero />
-      <AboutUs />
-      <Services />
-      <Counter />
-      <ContactForm />
-      <Instagram />
+      <main>
+        <Hero />
+        <AboutUs />
+        <Services />
+        <Counter />
+        <ContactForm />
+        <Instagram />
+      </main>
       <Footer />
     </div>
   );
