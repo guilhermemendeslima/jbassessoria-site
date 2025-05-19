@@ -24,6 +24,20 @@ const Instagram = () => {
       likes: "312",
       comments: "56"
     },
+    {
+      image: "https://images.pexels.com/photos/7681091/pexels-photo-7681091.jpeg",
+      caption: "Planejamento tributário estratégico para sua empresa economizar mais! Agende uma consultoria.",
+      likes: "198",
+      comments: "28",
+      className: "hidden lg:block"
+    },
+    {
+      image: "https://images.pexels.com/photos/7681097/pexels-photo-7681097.jpeg",
+      caption: "Dicas para manter sua empresa em dia com as obrigações fiscais. Siga-nos para mais conteúdo!",
+      likes: "245",
+      comments: "39",
+      className: "hidden xl:block"
+    }
   ];
 
   const scroll = (direction: 'left' | 'right') => {
@@ -66,7 +80,7 @@ const Instagram = () => {
             {posts.map((post, index) => (
               <motion.div 
                 key={index}
-                className="flex-none w-[280px] sm:w-[320px] bg-white rounded-xl shadow-lg snap-center"
+                className={`flex-none w-[280px] sm:w-[320px] bg-white rounded-xl shadow-lg snap-center ${post.className || ''}`}
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}

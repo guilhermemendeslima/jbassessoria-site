@@ -8,9 +8,25 @@ const Hero = () => {
       id="início" 
       className="relative min-h-[100vh] flex items-center justify-center overflow-hidden"
     >
-      {/* Static Gradient Background */}
+      {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#3c2c23] via-[#2c1b11] to-[#1a0f0a]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.15),transparent_70%)]" />
+        <motion.div 
+          className="absolute inset-0"
+          animate={{
+            background: [
+              'radial-gradient(600px at 0% 0%, rgba(214,177,106,0.15) 0%, transparent 70%)',
+              'radial-gradient(600px at 100% 0%, rgba(214,177,106,0.15) 0%, transparent 70%)',
+              'radial-gradient(600px at 100% 100%, rgba(214,177,106,0.15) 0%, transparent 70%)',
+              'radial-gradient(600px at 0% 100%, rgba(214,177,106,0.15) 0%, transparent 70%)',
+              'radial-gradient(600px at 0% 0%, rgba(214,177,106,0.15) 0%, transparent 70%)',
+            ]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(214,177,106,0.1),transparent_70%)]" />
       </div>
 
@@ -23,7 +39,55 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight px-4">
-              <span className="inline sm:hidden">Simplificamos sua contabilidade com tradição e inovação</span>
+              <span className="inline sm:hidden">
+                Simplificamos sua{' '}
+                <motion.span
+                  className="bg-gradient-to-r from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent inline-block"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    opacity: [1, 0.8, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  Contabilidade
+                </motion.span>
+                {' '}com{' '}
+                <motion.span
+                  className="bg-gradient-to-r from-tertiary to-[#e8c88a] bg-clip-text text-transparent inline-block"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    opacity: [1, 0.8, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    delay: 0.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  Tradição
+                </motion.span>
+                {' '}e{' '}
+                <motion.span
+                  className="bg-gradient-to-br from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent inline-block"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    opacity: [1, 0.8, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    delay: 1,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  Inovação
+                </motion.span>
+              </span>
               <span className="hidden sm:inline">
                 Simplificamos sua{' '}
                 <span className="bg-gradient-to-r from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent">
