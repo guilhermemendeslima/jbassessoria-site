@@ -271,3 +271,31 @@ html {
 .translate-z-20 {
   transform: translateZ(20px);
 }
+
+/* Ajustes de responsividade */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .section-padding {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* Correção de overflow */
+.modal-content {
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
