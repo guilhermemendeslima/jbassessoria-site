@@ -251,15 +251,15 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="service-card group relative bg-secondary border border-gray-100 rounded-xl p-6 depth-shadow hover:border-tertiary/50 overflow-hidden"
+              className="group bg-secondary border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-tertiary/50"
             >
-              <div className="mb-4 floating-animation">{service.icon}</div>
-              <h4 className="text-xl font-semibold text-primary mb-3 text-center">{service.title}</h4>
-              <p className="text-gray-600 text-center">{service.description}</p>
-              <div className="mt-4 text-center">
+              <div className="mb-4">{service.icon}</div>
+              <h4 className="text-xl font-semibold text-primary mb-3">{service.title}</h4>
+              <p className="text-gray-600">{service.description}</p>
+              <div className="mt-4">
                 <button 
                   onClick={() => openModal(service)}
-                  className="text-tertiary group-hover:text-primary font-medium inline-flex items-center transition-colors duration-300"
+                  className="text-tertiary group-hover:text-primary font-medium flex items-center transition-colors duration-300"
                 >
                   Saiba mais
                   <motion.svg 
