@@ -47,8 +47,8 @@ html {
 /* Enhanced Grid Pattern */
 .bg-grid-pattern {
   background-image: 
-    linear-gradient(rgba(214, 177, 106, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(214, 177, 106, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
   background-size: 30px 30px;
   animation: grid-float 20s linear infinite;
 }
@@ -75,8 +75,8 @@ html {
 
 .icon-3d-shadow {
   box-shadow: 
-    0 10px 30px -10px rgba(214, 177, 106, 0.3),
-    0 5px 15px -5px rgba(214, 177, 106, 0.2);
+    0 10px 30px -10px rgba(0, 255, 0, 0.3),
+    0 5px 15px -5px rgba(0, 255, 0, 0.2);
 }
 
 .icon-3d-gradient {
@@ -92,41 +92,14 @@ html {
   padding: 2px;
   background: linear-gradient(
     135deg,
-    rgba(214, 177, 106, 0.2) 0%,
-    rgba(214, 177, 106, 0.1) 100%
+    rgba(0, 255, 0, 0.2) 0%,
+    rgba(0, 255, 0, 0.1) 100%
   );
   -webkit-mask: 
     linear-gradient(#fff 0 0) content-box, 
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-}
-
-.icon-3d-reflection::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: inherit;
-}
-
-.icon-3d-reflection:hover::before {
-  opacity: 1;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(0.98); }
-}
-
-.animate-pulse {
-  animation: pulse 3s ease-in-out infinite;
 }
 
 @keyframes shine {
@@ -160,135 +133,20 @@ html {
   animation: shine 0.75s;
 }
 
-.instagram-grid-item {
-  transition: transform 0.3s ease-out;
+/* Instagram Carousel */
+.instagram-carousel {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
-.instagram-grid-item:hover {
-  transform: translateY(-5px) scale(1.02);
-}
-
-.instagram-overlay {
-  opacity: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
-  transition: opacity 0.3s ease-in-out;
-}
-
-.instagram-grid-item:hover .instagram-overlay {
-  opacity: 1;
-}
-
-.counter-icon {
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease;
-}
-
-.counter-icon:hover {
-  transform: translateZ(20px) rotateX(10deg) rotateY(10deg);
-}
-
-.section-title-decoration {
-  position: relative;
-}
-
-.section-title-decoration::before,
-.section-title-decoration::after {
-  content: '';
-  position: absolute;
-  height: 2px;
-  width: 50px;
-  background: linear-gradient(90deg, transparent, currentColor, transparent);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.section-title-decoration::before {
-  right: 100%;
-  margin-right: 15px;
-}
-
-.section-title-decoration::after {
-  left: 100%;
-  margin-left: 15px;
-}
-
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-.transform-style-3d {
-  transform-style: preserve-3d;
-}
-
-.transform-style-preserve-3d {
-  transform-style: preserve-3d;
-}
-
-/* Particle Animation */
-@keyframes particle-float {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(10px, -10px); }
-  50% { transform: translate(0, -20px); }
-  75% { transform: translate(-10px, -10px); }
-}
-
-.particle {
-  position: absolute;
-  pointer-events: none;
-  animation: particle-float 8s infinite ease-in-out;
-}
-
-.particle:nth-child(2n) {
-  animation-duration: 12s;
-}
-
-.particle:nth-child(3n) {
-  animation-duration: 10s;
-  animation-delay: -2s;
-}
-
-/* Enhanced animations */
-.animation-element {
-  transition: transform 0.3s ease-out;
-}
-
-.animation-element:hover {
-  transform: perspective(1000px) rotateY(15deg) translateZ(20px) !important;
-}
-
-.icon-element {
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-  will-change: transform, opacity;
-}
-
-/* Add smooth gradient transition */
-.bg-gradient-to-b {
-  background-image: linear-gradient(to bottom, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%);
-  transition: background-position 0.5s ease-in-out;
-}
-
-/* 3D Transform for icons */
-.translate-z-20 {
-  transform: translateZ(20px);
+.instagram-carousel > * {
+  scroll-snap-align: start;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .container {
     @apply px-4;
-  }
-
-  h1 {
-    @apply text-3xl leading-tight;
-  }
-
-  h2 {
-    @apply text-2xl;
-  }
-
-  h3 {
-    @apply text-xl;
   }
 
   .section-spacing {
@@ -301,14 +159,6 @@ html {
 
   .card-padding {
     @apply p-4;
-  }
-
-  .mobile-menu {
-    @apply fixed top-16 left-0 right-0 bg-primary p-4 shadow-lg;
-  }
-
-  .mobile-menu-item {
-    @apply block py-3 px-4 rounded-lg transition-colors hover:bg-white/10;
   }
 
   input,
@@ -324,25 +174,9 @@ html {
   .reduce-motion {
     @apply transform-none animate-none;
   }
-
-  .responsive-image {
-    @apply max-h-[300px] object-cover;
-  }
 }
 
 @media (max-width: 640px) {
-  h1 {
-    @apply text-2xl;
-  }
-
-  h2 {
-    @apply text-xl;
-  }
-
-  h3 {
-    @apply text-lg;
-  }
-
   .button-text {
     @apply text-sm;
   }

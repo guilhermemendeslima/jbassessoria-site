@@ -28,7 +28,7 @@ const Instagram = () => {
 
   const scroll = (direction: 'left' | 'right') => {
     if (carouselRef.current) {
-      const scrollAmount = direction === 'left' ? -288 : 288; // 288px is the width of one card
+      const scrollAmount = direction === 'left' ? -320 : 320;
       carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
@@ -38,7 +38,7 @@ const Instagram = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-white overflow-x-hidden">
+    <section className="py-16 md:py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div 
           className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
@@ -57,17 +57,16 @@ const Instagram = () => {
           </p>
         </motion.div>
 
-        {/* Mobile Instagram Carousel */}
-        <div className="relative md:hidden">
+        {/* Instagram Feed */}
+        <div className="relative">
           <div 
             ref={carouselRef}
-            className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-6"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 px-4 -mx-4 scrollbar-hide"
           >
             {posts.map((post, index) => (
               <motion.div 
                 key={index}
-                className="flex-none w-72 bg-white rounded-xl shadow-lg snap-center"
+                className="flex-none w-[280px] sm:w-[320px] bg-white rounded-xl shadow-lg snap-center"
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -108,55 +107,25 @@ const Instagram = () => {
             ))}
           </div>
 
-          {/* Carousel Navigation Buttons */}
+          {/* Navigation Buttons */}
           <button
             onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg md:hidden"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg z-10 hover:bg-white transition-colors"
+            aria-label="Scroll left"
           >
             <ChevronLeft className="w-6 h-6 text-primary" />
           </button>
           <button
             onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg md:hidden"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg z-10 hover:bg-white transition-colors"
+            aria-label="Scroll right"
           >
             <ChevronRight className="w-6 h-6 text-primary" />
           </button>
         </div>
 
-        {/* Desktop Instagram Grid */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          {posts.map((post, index) => (
-            <motion.div 
-              key={index}
-              className="instagram-grid-item relative rounded-xl overflow-hidden shadow-lg cursor-pointer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              onClick={handleInstagramClick}
-            >
-              <div className="aspect-square">
-                <img 
-                  src={post.image}
-                  alt="Instagram post"
-                  className="w-full h-full object-cover"
-                />
-                <div className="instagram-overlay absolute inset-0 flex flex-col justify-end p-4">
-                  <p className="text-white text-sm mb-2">{post.caption}</p>
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 flex items-center justify-center">
-                      <InstagramIcon className="w-4 h-4 text-white" />
-                    </div>
-                    <span className="ml-2 text-white text-sm">@jbassessoriaecontabilidade</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
         <motion.div 
-          className="text-center"
+          className="text-center mt-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
