@@ -10,8 +10,16 @@ const Hero = () => {
     >
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#3c2c23] via-[#2c1b11] to-[#1a0f0a]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.15),transparent_70%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(214,177,106,0.1),transparent_70%)]" />
+        {/* Animated gradient orbs */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -inset-[10%] opacity-30">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-tertiary/20 rounded-full blur-3xl animate-float"></div>
+            <div className="absolute top-2/3 right-1/3 w-80 h-80 bg-tertiary/15 rounded-full blur-3xl animate-float-delayed"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-tertiary/10 rounded-full blur-3xl animate-float-slow"></div>
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,177,106,0.2),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(214,177,106,0.15),transparent_70%)]" />
       </div>
 
       {/* Content Container */}
@@ -25,29 +33,29 @@ const Hero = () => {
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight px-4">
               <span className="inline sm:hidden">
                 Simplificamos sua{' '}
-                <span className="bg-gradient-to-r from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent inline-block">
+                <span className="bg-gradient-to-r from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent inline-block bg-[length:200%_100%]">
                   Contabilidade
                 </span>
                 {' '}com{' '}
-                <span className="bg-gradient-to-r from-tertiary to-[#e8c88a] bg-clip-text text-transparent inline-block">
+                <span className="bg-gradient-to-r from-tertiary to-[#e8c88a] bg-clip-text text-transparent inline-block bg-[length:200%_100%]">
                   Tradição
                 </span>
                 {' '}e{' '}
-                <span className="bg-gradient-to-br from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent inline-block">
+                <span className="bg-gradient-to-br from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent inline-block bg-[length:200%_100%]">
                   Inovação
                 </span>
               </span>
               <span className="hidden sm:inline">
                 Simplificamos sua{' '}
-                <span className="bg-gradient-to-r from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent bg-[length:200%_100%]">
                   Contabilidade
                 </span>
                 {' '}com{' '}
-                <span className="bg-gradient-to-r from-tertiary to-[#e8c88a] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-tertiary to-[#e8c88a] bg-clip-text text-transparent bg-[length:200%_100%]">
                   Tradição
                 </span>
                 {' '}e{' '}
-                <span className="bg-gradient-to-br from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent">
+                <span className="bg-gradient-to-br from-tertiary via-[#e8c88a] to-tertiary bg-clip-text text-transparent bg-[length:200%_100%]">
                   Inovação
                 </span>
               </span>
