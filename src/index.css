@@ -245,3 +245,9 @@ html {
   transform-style: preserve-3d;
   will-change: transform, opacity;
 }
+
+/* Add smooth gradient transition */
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%);
+  transition: background-position 0.5s ease-in-out;
+}
