@@ -5,13 +5,42 @@ import { Calculator, FileText, BarChart3, DollarSign, Building2, FileSearch } fr
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!heroRef.current) return;
+      const elements = heroRef.current.querySelectorAll('.icon-element');
+      
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      
+      elements.forEach((el, index) => {
+        const htmlEl = el as HTMLElement;
+        const depth = 1 + index * 0.5;
+        const translateX = (x - 0.5) * depth * 30;
+        const translateY = (y - 0.5) * depth * 30;
+        const rotateX = (y - 0.5) * depth * 20;
+        const rotateY = (x - 0.5) * depth * 20;
+        
+        htmlEl.style.transform = `
+          perspective(1000px)
+          translate3d(${translateX}px, ${translateY}px, ${depth * 50}px)
+          rotateX(${rotateX}deg)
+          rotateY(${rotateY}deg)
+        `;
+      });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   const iconComponents = [
-    { Icon: Calculator, delay: 0 },
-    { Icon: FileText, delay: 0.2 },
-    { Icon: BarChart3, delay: 0.4 },
-    { Icon: DollarSign, delay: 0.6 },
-    { Icon: Building2, delay: 0.8 },
-    { Icon: FileSearch, delay: 1 }
+    { Icon: Calculator, position: 'top-10 -right-4', delay: 0 },
+    { Icon: FileText, position: 'top-1/4 -right-8', delay: 0.2 },
+    { Icon: BarChart3, position: 'top-1/2 -right-4', delay: 0.4 },
+    { Icon: DollarSign, position: 'bottom-1/4 -right-8', delay: 0.6 },
+    { Icon: Building2, position: 'bottom-20 -right-4', delay: 0.8 },
+    { Icon: FileSearch, position: 'bottom-0 right-1/4', delay: 1 }
   ];
 
   return (
@@ -21,7 +50,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
           <motion.div 
-            className="flex-1 text-center md:text-left md:max-w-[40%]"
+            className="flex-1 text-center md:text-left md:max-w-[60%]"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -74,7 +103,7 @@ const Hero = () => {
           </motion.div>
           
           <motion.div 
-            className="flex-1 md:flex-none md:w-[60%] relative"
+            className="flex-1 md:flex-none md:w-[40%] relative transform-style-preserve-3d"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
@@ -91,17 +120,29 @@ const Hero = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent"></div>
               
-              <div className="absolute -bottom-1 -right-1 transform translate-y-1/4 translate-x-1/4">
-                <motion.div 
-                  className="bg-white rounded-full p-6 shadow-xl"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.6, duration: 0.8, ease: "easeInOut" }}
+              {iconComponents.map(({ Icon, position, delay }, index) => (
+                <motion.div
+                  key={index}
+                  className={`icon-element absolute ${position} p-4 bg-white/10 backdrop-blur-sm rounded-2xl shadow-lg`}
+                  initial={{ opacity: 0, scale: 0, z: -100 }}
+                  animate={{ opacity: 1, scale: 1, z: 0 }}
+                  transition={{ delay: delay + 0.5, duration: 0.8, ease: "easeInOut" }}
                 >
+                  <Icon className="w-8 h-8 text-tertiary" />
+                </motion.div>
+              ))}
+
+              <motion.div 
+                className="absolute -bottom-1 -right-1 transform translate-y-1/4 translate-x-1/4"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.6, duration: 0.8, ease: "easeInOut" }}
+              >
+                <div className="bg-white rounded-full p-6 shadow-xl">
                   <p className="text-primary font-bold text-4xl">35<span className="text-tertiary">+</span></p>
                   <p className="text-gray-600 whitespace-nowrap">Anos de experiência</p>
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
